@@ -35,7 +35,8 @@ public class StreamLabService {
 		return users.findAll();
 	}
 	
-    public long ProblemOne() {    	
+    public long ProblemOne() {
+    	// Write a query that returns the number of users in the Users table.
     	return users.findAll().stream().count();
     }
     
@@ -46,28 +47,25 @@ public class StreamLabService {
 
     }
 
-    private List<Product> ProblemThree()
+    public List<Product> ProblemThree()
     {
-        // Write a LINQ query that gets each product where the products price is greater than $150.
-        // Then print the name and price of each product from the above query to the console.
+        // Write a query that gets each product where the products price is greater than $150.
     	return null;
     }
 
-    private List<Product> ProblemFour()
+    public List<Product> ProblemFour()
     {
-        // Write a LINQ query that gets each product that contains an "s" in the products name.
-        // Then print the name of each product from the above query to the console.
+        // Write a query that gets each product that contains an "s" in the products name.
     	return null;
     }
 
-    private List<User> ProblemFive()
+    public List<User> ProblemFive()
     {
-        // Write a LINQ query that gets all of the users who registered BEFORE 2016
-        // Then print each user's email and registration date to the console.
+        // Write a query that gets all of the users who registered BEFORE 2016
     	return null;
     }
 
-    private List<User> ProblemSix()
+    public List<User> ProblemSix()
     {
         // Write a LINQ query that gets all of the users who registered AFTER 2016 and BEFORE 2018
         // Then print each user's email and registration date to the console.
@@ -76,7 +74,7 @@ public class StreamLabService {
 
     // <><><><><><><><> R Actions (Read) with Foreign Keys <><><><><><><><><>
 
-    private void ProblemSeven()
+    public void ProblemSeven()
     {
         // Write a LINQ query that retreives all of the users who are assigned to the role of Customer.
         // Then print the users email and role name to the console.
@@ -87,14 +85,14 @@ public class StreamLabService {
         }
     }
 
-    private void ProblemEight()
+    public void ProblemEight()
     {
         // Write a LINQ query that retreives all of the products in the shopping cart of the user who has the email "afton@gmail.com".
         // Then print the product's name, price, and quantity to the console.
 
     }
 
-    private void ProblemNine()
+    public void ProblemNine()
     {
         // Write a LINQ query that retreives all of the products in the shopping cart of the user who has the email "oda@gmail.com" and returns the sum of all of the products prices.
         // HINT: End of query will be: .Select(sc => sc.Product.Price).Sum();
@@ -102,7 +100,7 @@ public class StreamLabService {
 
     }
 
-    private void ProblemTen()
+    public void ProblemTen()
     {
         // Write a LINQ query that retreives all of the products in the shopping cart of users who have the role of "Employee".
         // Then print the user's email as well as the product's name, price, and quantity to the console.
@@ -113,7 +111,7 @@ public class StreamLabService {
 
     // <><> C Actions (Create) <><>
 
-    private void ProblemEleven()
+    public void ProblemEleven()
     {
         // Create a new User object and add that user to the Users table using LINQ.
         User newUser = new User()
@@ -125,13 +123,13 @@ public class StreamLabService {
         _context.SaveChanges();
     }
 
-    private void ProblemTwelve()
+    public void ProblemTwelve()
     {
         // Create a new Product object and add that product to the Products table using LINQ.
 
     }
 
-    private void ProblemThirteen()
+    public void ProblemThirteen()
     {
         // Add the role of "Customer" to the user we just created in the UserRoles junction table using LINQ.
         var roleId = _context.Roles.Where(r => r.RoleName == "Customer").Select(r => r.Id).SingleOrDefault();
@@ -145,7 +143,7 @@ public class StreamLabService {
         _context.SaveChanges();
     }
 
-    private void ProblemFourteen()
+    public void ProblemFourteen()
     {
         // Add the product you create to the user we created in the ShoppingCart junction table using LINQ.
 
@@ -153,7 +151,7 @@ public class StreamLabService {
 
     // <><> U Actions (Update) <><>
 
-    private void ProblemFifteen()
+    public void ProblemFifteen()
     {
         // Update the email of the user we created to "mike@gmail.com"
         var user = _context.Users.Where(u => u.Email == "david@gmail.com").SingleOrDefault();
@@ -162,13 +160,13 @@ public class StreamLabService {
         _context.SaveChanges();
     }
 
-    private void ProblemSixteen()
+    public void ProblemSixteen()
     {
         // Update the price of the product you created to something different using LINQ.
 
     }
 
-    private void ProblemSeventeen()
+    public void ProblemSeventeen()
     {
         // Change the role of the user we created to "Employee"
         // HINT: You need to delete the existing role relationship and then create a new UserRole object and add it to the UserRoles table
@@ -186,13 +184,13 @@ public class StreamLabService {
 
     // <><> D Actions (Delete) <><>
 
-    private void ProblemEighteen()
+    public void ProblemEighteen()
     {
         // Delete the role relationship from the user who has the email "oda@gmail.com" using LINQ.
 
     }
 
-    private void ProblemNineteen()
+    public void ProblemNineteen()
     {
         // Delete all of the product relationships to the user with the email "oda@gmail.com" in the ShoppingCart table using LINQ.
         // HINT: Loop
@@ -204,7 +202,7 @@ public class StreamLabService {
         _context.SaveChanges();
     }
 
-    private void ProblemTwenty()
+    public void ProblemTwenty()
     {
         // Delete the user with the email "oda@gmail.com" from the Users table using LINQ.
 
