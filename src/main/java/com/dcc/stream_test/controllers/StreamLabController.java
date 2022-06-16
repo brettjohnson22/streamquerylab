@@ -76,8 +76,8 @@ public class StreamLabController {
     }
     
     @GetMapping("/problemTwelve")
-    public void ProblemTwelve() {
-    	service.ProblemTwelve();
+    public Product ProblemTwelve() {
+    	return service.ProblemTwelve();
     }
     
     @GetMapping("/problemThirteen")
@@ -90,10 +90,10 @@ public class StreamLabController {
     	return service.ProblemFourteen();
     }
     
-//    @GetMapping("/problemFifteen")
-//    public void ProblemFifteen() {
-//    	return service.ProblemFifteen();
-//    }
+    @GetMapping("/problemFifteen")
+    public User ProblemFifteen() {
+    	return service.ProblemFifteen();
+    }
 //    
 //    @GetMapping("/problemSixteen")
 //    public void ProblemSixteen() {

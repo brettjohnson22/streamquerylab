@@ -8,7 +8,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import org.hibernate.mapping.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -107,16 +109,35 @@ public class StreamLabService {
     public long ProblemNine()
     {
         // Write a query that retrieves all of the products in the shopping cart of the user who has the email "oda@gmail.com" and returns the sum of all of the products prices.
-        // HINT: End of query will be: .Select(sc => sc.Product.Price).Sum();
-        // Then print the total of the shopping cart to the console.
-    	return 0;
+    	
+    	//Step by step version
+// 	    User oda = users.findAll().stream().filter(u -> u.getEmail().equals("oda@gmail.com")).findFirst().orElse(null);
+//    	List<ShoppingcartItem> items = oda.getShoppingcartItems();
+//    	List<Product> products = items.stream().map(i -> i.getProduct()).toList();
+//    	List<Integer> prices = products.stream().map(p -> p.getPrice()).toList();
+//    	Integer sum = prices.stream().collect(Collectors.summingInt(i -> i));
+    	
+    	//Razzle dazzle version
+    	Integer sum = users.findAll().stream().filter(u -> u.getEmail().equals("oda@gmail.com")).findFirst().orElse(null).getShoppingcartItems().stream().map(i -> i.getProduct()).toList().stream().map(p -> p.getPrice()).toList().stream().collect(Collectors.summingInt(i -> i));
+    	
+    	return sum;
+
     }
 
     public List<Product> ProblemTen()
     {
         // Write a query that retrieves all of the products in the shopping cart of users who have the role of "Employee".
-
-    	return null;
+    	
+    	//Step by step version
+//    	Role employeeRole = roles.findAll().stream().filter(r -> r.getName().equals("Employee")).findFirst().orElse(null);
+//    	List<User> employees = users.findAll().stream().filter(u -> u.getRoles().contains(employeeRole)).toList();
+//    	List<ShoppingcartItem> employeeItems = employees.stream().map(e -> e.getShoppingcartItems()).flatMap(s -> s.stream()).collect(Collectors.toList());
+//    	List<Product> products = employeeItems.stream().map(i -> i.getProduct()).toList();
+    	
+    	//Razzle dazzle version
+    	List<Product> products = users.findAll().stream().filter(u -> u.getRoles().contains(roles.findAll().stream().filter(r -> r.getName().equals("Employee")).findFirst().orElse(null))).toList().stream().map(e -> e.getShoppingcartItems()).flatMap(s -> s.stream()).collect(Collectors.toList()).stream().map(i -> i.getProduct()).toList();
+    	
+    	return products;
     }
 
     // <><><><><><><><> CUD (Create, Update, Delete) Actions <><><><><><><><><>
@@ -133,9 +154,16 @@ public class StreamLabService {
         return newUser;
     }
 
-    public void ProblemTwelve()
+    public Product ProblemTwelve()
     {
         // Create a new Product object and add that product to the Products table.
+    	
+    	Product newProduct = new Product();
+    	newProduct.setName("Dirty Hockey Mask");
+    	newProduct.setDescription("Found in a shed at Camp Crystal Lake.");
+    	newProduct.setPrice(13);
+    	products.save(newProduct);
+    	return newProduct;
 
     }
 
@@ -164,18 +192,17 @@ public class StreamLabService {
 
     // <><> U Actions (Update) <><>
 
-    public void ProblemFifteen()
+    public User ProblemFifteen()
     {
-        // Update the email of the user we created to "mike@gmail.com"
-//        var user = _context.Users.Where(u => u.Email == "david@gmail.com").SingleOrDefault();
-//        user.Email = "mike@gmail.com";
-//        _context.Users.Update(user);
-//        _context.SaveChanges();
+         //Update the email of the user we created in problem 11 to "mike@gmail.com"
+          User user = users.findAll().stream().filter(u -> u.getEmail().equals("david@gmail.com")).findFirst().orElse(null);
+          user.setEmail("mike@gmail.com");
+          return user;
     }
 
     public void ProblemSixteen()
     {
-        // Update the price of the product you created to something different using LINQ.
+        // Update the price of the product you created to a different value.
 
     }
 
@@ -199,7 +226,7 @@ public class StreamLabService {
 
     public void ProblemEighteen()
     {
-        // Delete the role relationship from the user who has the email "oda@gmail.com" using LINQ.
+        // Delete the role relationship from the user who has the email "oda@gmail.com".
 
     }
 
@@ -217,7 +244,7 @@ public class StreamLabService {
 
     public void ProblemTwenty()
     {
-        // Delete the user with the email "oda@gmail.com" from the Users table using LINQ.
+        // Delete the user with the email "oda@gmail.com" from the Users table.
 
     }
     
