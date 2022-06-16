@@ -17,7 +17,6 @@ public class Product implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 
 	private String description;
@@ -26,9 +25,9 @@ public class Product implements Serializable {
 
 	private BigDecimal price;
 
-	//bi-directional many-to-one association to Shoppingcart
+	//bi-directional many-to-one association to ShoppingcartItem
 	@OneToMany(mappedBy="product")
-	private List<Shoppingcart> shoppingcarts;
+	private List<ShoppingcartItem> shoppingcartItems;
 
 	public Product() {
 	}
@@ -65,26 +64,26 @@ public class Product implements Serializable {
 		this.price = price;
 	}
 
-	public List<Shoppingcart> getShoppingcarts() {
-		return this.shoppingcarts;
+	public List<ShoppingcartItem> getShoppingcartItems() {
+		return this.shoppingcartItems;
 	}
 
-	public void setShoppingcarts(List<Shoppingcart> shoppingcarts) {
-		this.shoppingcarts = shoppingcarts;
+	public void setShoppingcartItems(List<ShoppingcartItem> shoppingcartItems) {
+		this.shoppingcartItems = shoppingcartItems;
 	}
 
-	public Shoppingcart addShoppingcart(Shoppingcart shoppingcart) {
-		getShoppingcarts().add(shoppingcart);
-		shoppingcart.setProduct(this);
+	public ShoppingcartItem addShoppingcartItem(ShoppingcartItem shoppingcartItem) {
+		getShoppingcartItems().add(shoppingcartItem);
+		shoppingcartItem.setProduct(this);
 
-		return shoppingcart;
+		return shoppingcartItem;
 	}
 
-	public Shoppingcart removeShoppingcart(Shoppingcart shoppingcart) {
-		getShoppingcarts().remove(shoppingcart);
-		shoppingcart.setProduct(null);
+	public ShoppingcartItem removeShoppingcartItem(ShoppingcartItem shoppingcartItem) {
+		getShoppingcartItems().remove(shoppingcartItem);
+		shoppingcartItem.setProduct(null);
 
-		return shoppingcart;
+		return shoppingcartItem;
 	}
 
 }

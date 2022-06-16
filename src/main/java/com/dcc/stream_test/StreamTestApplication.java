@@ -10,12 +10,6 @@ import com.dcc.stream_test.repository.RepositoryWrapper;
 
 @SpringBootApplication
 public class StreamTestApplication {
-//	@Bean
-//	public RepositoryWrapper repositoryWrapper() {
-//		return new RepositoryWrapper();
-//	}
-//	
-
 
 	public static void main(String[] args) {
 		SpringApplication.run(StreamTestApplication.class, args);

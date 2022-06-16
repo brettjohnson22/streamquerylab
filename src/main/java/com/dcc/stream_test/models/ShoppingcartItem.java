@@ -5,32 +5,36 @@ import javax.persistence.*;
 
 
 /**
- * The persistent class for the shoppingcart database table.
+ * The persistent class for the shoppingcart_item database table.
  * 
  */
 @Entity
-@NamedQuery(name="Shoppingcart.findAll", query="SELECT s FROM Shoppingcart s")
-public class Shoppingcart implements Serializable {
+@Table(name="shoppingcart_item")
+@NamedQuery(name="ShoppingcartItem.findAll", query="SELECT s FROM ShoppingcartItem s")
+public class ShoppingcartItem implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@EmbeddedId
-	private ShoppingcartPK id;
+	private ShoppingcartItemPK id;
 
 	private int quantity;
 
 	//bi-directional many-to-one association to Product
 	@ManyToOne
-	@JoinColumn(name="ProductId", insertable=false, updatable=false)
 	private Product product;
 
-	public Shoppingcart() {
+	//bi-directional many-to-one association to User
+	@ManyToOne
+	private User user;
+
+	public ShoppingcartItem() {
 	}
 
-	public ShoppingcartPK getId() {
+	public ShoppingcartItemPK getId() {
 		return this.id;
 	}
 
-	public void setId(ShoppingcartPK id) {
+	public void setId(ShoppingcartItemPK id) {
 		this.id = id;
 	}
 
@@ -48,6 +52,14 @@ public class Shoppingcart implements Serializable {
 
 	public void setProduct(Product product) {
 		this.product = product;
+	}
+
+	public User getUser() {
+		return this.user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 }

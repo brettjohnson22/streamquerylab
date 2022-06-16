@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.dcc.stream_test.models.Product;
 import com.dcc.stream_test.models.User;
 import com.dcc.stream_test.service.StreamLabService;
 
@@ -28,98 +29,98 @@ public class StreamLabController {
     }
 	
     @GetMapping("/problemTwo")
-    public void ProblemTwo() {
+    public List<User> ProblemTwo() {
     	return service.ProblemTwo();
     }
     
     @GetMapping("/problemThree")
-    public void ProblemThree() {
+    public List<Product> ProblemThree() {
     	return service.ProblemThree();
     }
     
     @GetMapping("/problemFour")
-    public void ProblemFour() {
+    public List<Product> ProblemFour() {
     	return service.ProblemFour();
     }
     
     @GetMapping("/problemFive")
-    public void ProblemFive() {
+    public List<User> ProblemFive() {
     	return service.ProblemFive();
     }
     
     @GetMapping("/problemSix")
-    public void ProblemSix() {
+    public List<User> ProblemSix() {
     	return service.ProblemSix();
     }
     
     @GetMapping("/problemSeven")
-    public void ProblemSeven() {
+    public List<User> ProblemSeven() {
     	return service.ProblemSeven();
     }
     
     @GetMapping("/problemEight")
-    public void ProblemEight() {
+    public List<Product> ProblemEight() {
     	return service.ProblemEight();
     }
     
     @GetMapping("/problemNine")
-    public void ProblemNine() {
+    public long ProblemNine() {
     	return service.ProblemNine();
     }
     
     @GetMapping("/problemTen")
-    public void ProblemTen() {
+    public List<Product> ProblemTen() {
     	return service.ProblemTen();
     }
     
     @GetMapping("/problemEleven")
     public void ProblemEleven() {
-    	return service.ProblemEleven();
+    	service.ProblemEleven();
     }
     
     @GetMapping("/problemTwelve")
     public void ProblemTwelve() {
-    	return service.ProblemTwelve();
+    	service.ProblemTwelve();
     }
     
     @GetMapping("/problemThirteen")
     public void ProblemThirteen() {
-    	return service.ProblemThirteen();
+    	service.ProblemThirteen();
     }
     
     @GetMapping("/problemFourteen")
     public void ProblemFourteen() {
-    	return service.ProblemFourteen();
+    	service.ProblemFourteen();
     }
     
-    @GetMapping("/problemFifteen")
-    public void ProblemFifteen() {
-    	return service.ProblemFifteen();
-    }
-    
-    @GetMapping("/problemSixteen")
-    public void ProblemSixteen() {
-    	return service.ProblemSixteen();
-    }
-    
-    @GetMapping("/problemSeventeen")
-    public void ProblemSeventeen() {
-    	return service.ProblemSeventeen();
-    }
-    
-    @GetMapping("/problemEighteen")
-    public void ProblemEighteen() {
-    	return service.ProblemEighteen();
-    }
-    
-    @GetMapping("/problemNineteen")
-    public void ProblemNineteen() {
-    	return service.ProblemNineteen();
-    }
-    
-    @GetMapping("/problemTwenty")
-    public void ProblemTwenty() {
-    	return service.ProblemTwenty();
-    }
+//    @GetMapping("/problemFifteen")
+//    public void ProblemFifteen() {
+//    	return service.ProblemFifteen();
+//    }
+//    
+//    @GetMapping("/problemSixteen")
+//    public void ProblemSixteen() {
+//    	return service.ProblemSixteen();
+//    }
+//    
+//    @GetMapping("/problemSeventeen")
+//    public void ProblemSeventeen() {
+//    	return service.ProblemSeventeen();
+//    }
+//    
+//    @GetMapping("/problemEighteen")
+//    public void ProblemEighteen() {
+//    	return service.ProblemEighteen();
+//    }
+//    
+//    @GetMapping("/problemNineteen")
+//    public void ProblemNineteen() {
+//    	return service.ProblemNineteen();
+//    }
+//    
+//    @GetMapping("/problemTwenty")
+//    public void ProblemTwenty() {
+//    	return service.ProblemTwenty();
+//    }
     
 }
