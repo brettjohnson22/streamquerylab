@@ -11,15 +11,18 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.dcc.stream_test.models.Product;
 import com.dcc.stream_test.models.Role;
+import com.dcc.stream_test.models.ShoppingcartItem;
 import com.dcc.stream_test.models.User;
 import com.dcc.stream_test.repository.ProductsRepository;
 import com.dcc.stream_test.repository.RolesRepository;
 import com.dcc.stream_test.repository.ShoppingcartItemRepository;
 import com.dcc.stream_test.repository.UsersRepository;
 
+@Transactional
 @Service
 public class StreamLabService {
 	
@@ -34,11 +37,7 @@ public class StreamLabService {
 	private UsersRepository users;
 	@Autowired
 	private ShoppingcartItemRepository shoppingcartitems;
-	
-	public List<User> test(){
-		return users.findAll();
-	}
-	
+
     public long ProblemOne() {
     	// Write a query that returns the number of users in the Users table.
     	return users.findAll().stream().count();
@@ -99,7 +98,10 @@ public class StreamLabService {
     {
         // Write a query that retrieves all of the products in the shopping cart of the user who has the email "afton@gmail.com".
         // Then print the product's name, price, and quantity to the console.
-    	return null;
+    	User oda = users.getById(1);
+    	List<ShoppingcartItem> items = oda.getShoppingcartItems();
+    	List<Product> products = items.stream().map(i -> i.getProduct()).toList();
+    	return products;
     }
 
     public long ProblemNine()
@@ -146,10 +148,18 @@ public class StreamLabService {
     	return david.getRoles();
     }
 
-    public void ProblemFourteen()
+    public ShoppingcartItem ProblemFourteen()
     {
+    	//Create a new ShoppingCartItem to represent the new product you created being added to the new User you crteated's shopping cart.
         // Add the product you created to the user we created in the ShoppingCart junction table.
-
+    	User oda = users.findAll().stream().filter(u -> u.getEmail().equals("oda@gmail.com")).findFirst().orElse(null);
+    	Product watch = products.getById(6);
+    	ShoppingcartItem item = new ShoppingcartItem();
+    	item.setUser(oda);
+    	item.setProduct(watch);
+    	shoppingcartitems.save(item);
+    	return item;
+    	
     }
 
     // <><> U Actions (Update) <><>

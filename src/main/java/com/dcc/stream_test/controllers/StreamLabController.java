@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dcc.stream_test.models.Product;
 import com.dcc.stream_test.models.Role;
+import com.dcc.stream_test.models.ShoppingcartItem;
 import com.dcc.stream_test.models.User;
 import com.dcc.stream_test.service.StreamLabService;
 
@@ -18,12 +19,7 @@ public class StreamLabController {
 
 	@Autowired
 	public StreamLabService service;
-	
-    @GetMapping("/test")
-    public List<User> users(){
-        return service.test();
-    }
-    
+
     @GetMapping("/problemOne")
     public long ProblemOne() {    	
     	return service.ProblemOne();
@@ -90,8 +86,8 @@ public class StreamLabController {
     }
     
     @GetMapping("/problemFourteen")
-    public void ProblemFourteen() {
-    	service.ProblemFourteen();
+    public ShoppingcartItem ProblemFourteen() {
+    	return service.ProblemFourteen();
     }
     
 //    @GetMapping("/problemFifteen")

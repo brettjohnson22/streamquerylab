@@ -32,8 +32,9 @@ public class User implements Serializable {
 	private Date registrationDate = new Date();
 
 	//bi-directional many-to-one association to ShoppingcartItem
-//	@OneToMany(mappedBy="user")
-//	private List<ShoppingcartItem> shoppingcartItems;
+	@JsonIgnore
+	@OneToMany(mappedBy="user")
+	private List<ShoppingcartItem> shoppingcartItems;
 
 	//bi-directional many-to-many association to Role
 	@JsonIgnore
@@ -41,10 +42,10 @@ public class User implements Serializable {
 	@JoinTable(
 		name="user_roles"
 		, joinColumns={
-			@JoinColumn(name="user_id", insertable=false, updatable=false)
+			@JoinColumn(name="user_id")
 			}
 		, inverseJoinColumns={
-			@JoinColumn(name="role_id", insertable=false, updatable=false)
+			@JoinColumn(name="role_id")
 			}
 		)
 	private List<Role> roles;
@@ -84,27 +85,27 @@ public class User implements Serializable {
 		this.registrationDate = registrationDate;
 	}
 
-//	public List<ShoppingcartItem> getShoppingcartItems() {
-//		return this.shoppingcartItems;
-//	}
-//
-//	public void setShoppingcartItems(List<ShoppingcartItem> shoppingcartItems) {
-//		this.shoppingcartItems = shoppingcartItems;
-//	}
+	public List<ShoppingcartItem> getShoppingcartItems() {
+		return this.shoppingcartItems;
+	}
 
-//	public ShoppingcartItem addShoppingcartItem(ShoppingcartItem shoppingcartItem) {
-//		getShoppingcartItems().add(shoppingcartItem);
-//		shoppingcartItem.setUser(this);
-//
-//		return shoppingcartItem;
-//	}
-//
-//	public ShoppingcartItem removeShoppingcartItem(ShoppingcartItem shoppingcartItem) {
-//		getShoppingcartItems().remove(shoppingcartItem);
-//		shoppingcartItem.setUser(null);
-//
-//		return shoppingcartItem;
-//	}
+	public void setShoppingcartItems(List<ShoppingcartItem> shoppingcartItems) {
+		this.shoppingcartItems = shoppingcartItems;
+	}
+
+	public ShoppingcartItem addShoppingcartItem(ShoppingcartItem shoppingcartItem) {
+		shoppingcartItem.setUser(this);
+		getShoppingcartItems().add(shoppingcartItem);
+
+		return shoppingcartItem;
+	}
+
+	public ShoppingcartItem removeShoppingcartItem(ShoppingcartItem shoppingcartItem) {
+		getShoppingcartItems().remove(shoppingcartItem);
+		shoppingcartItem.setUser(null);
+
+		return shoppingcartItem;
+	}
 
 	public List<Role> getRoles() {
 		return this.roles;
