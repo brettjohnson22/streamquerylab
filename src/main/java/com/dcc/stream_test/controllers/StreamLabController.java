@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dcc.stream_test.models.Product;
+import com.dcc.stream_test.models.Role;
 import com.dcc.stream_test.models.User;
 import com.dcc.stream_test.service.StreamLabService;
 
@@ -74,8 +75,8 @@ public class StreamLabController {
     }
     
     @GetMapping("/problemEleven")
-    public void ProblemEleven() {
-    	service.ProblemEleven();
+    public User ProblemEleven() {
+    	return service.ProblemEleven();
     }
     
     @GetMapping("/problemTwelve")
@@ -84,8 +85,8 @@ public class StreamLabController {
     }
     
     @GetMapping("/problemThirteen")
-    public void ProblemThirteen() {
-    	service.ProblemThirteen();
+    public List<Role> ProblemThirteen() {
+    	return service.ProblemThirteen();
     }
     
     @GetMapping("/problemFourteen")

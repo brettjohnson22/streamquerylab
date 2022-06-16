@@ -23,11 +23,11 @@ public class Product implements Serializable {
 
 	private String name;
 
-	private BigDecimal price;
+	private Integer price;
 
 	//bi-directional many-to-one association to ShoppingcartItem
-	@OneToMany(mappedBy="product")
-	private List<ShoppingcartItem> shoppingcartItems;
+//	@OneToMany(mappedBy="product")
+//	private List<ShoppingcartItem> shoppingcartItems;
 
 	public Product() {
 	}
@@ -56,34 +56,34 @@ public class Product implements Serializable {
 		this.name = name;
 	}
 
-	public BigDecimal getPrice() {
+	public Integer getPrice() {
 		return this.price;
 	}
 
-	public void setPrice(BigDecimal price) {
+	public void setPrice(Integer price) {
 		this.price = price;
 	}
 
-	public List<ShoppingcartItem> getShoppingcartItems() {
-		return this.shoppingcartItems;
-	}
+//	public List<ShoppingcartItem> getShoppingcartItems() {
+//		return this.shoppingcartItems;
+//	}
+//
+//	public void setShoppingcartItems(List<ShoppingcartItem> shoppingcartItems) {
+//		this.shoppingcartItems = shoppingcartItems;
+//	}
 
-	public void setShoppingcartItems(List<ShoppingcartItem> shoppingcartItems) {
-		this.shoppingcartItems = shoppingcartItems;
-	}
-
-	public ShoppingcartItem addShoppingcartItem(ShoppingcartItem shoppingcartItem) {
-		getShoppingcartItems().add(shoppingcartItem);
-		shoppingcartItem.setProduct(this);
-
-		return shoppingcartItem;
-	}
-
-	public ShoppingcartItem removeShoppingcartItem(ShoppingcartItem shoppingcartItem) {
-		getShoppingcartItems().remove(shoppingcartItem);
-		shoppingcartItem.setProduct(null);
-
-		return shoppingcartItem;
-	}
+//	public ShoppingcartItem addShoppingcartItem(ShoppingcartItem shoppingcartItem) {
+//		getShoppingcartItems().add(shoppingcartItem);
+//		shoppingcartItem.setProduct(this);
+//
+//		return shoppingcartItem;
+//	}
+//
+//	public ShoppingcartItem removeShoppingcartItem(ShoppingcartItem shoppingcartItem) {
+//		getShoppingcartItems().remove(shoppingcartItem);
+//		shoppingcartItem.setProduct(null);
+//
+//		return shoppingcartItem;
+//	}
 
 }

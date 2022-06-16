@@ -20,12 +20,12 @@ public class ShoppingcartItem implements Serializable {
 	private int quantity;
 
 	//bi-directional many-to-one association to Product
-	@ManyToOne
-	private Product product;
-
-	//bi-directional many-to-one association to User
-	@ManyToOne
-	private User user;
+//	@ManyToOne
+//	private Product product;
+//
+//	//bi-directional many-to-one association to User
+//	@ManyToOne
+//	private User user;
 
 	public ShoppingcartItem() {
 	}
@@ -46,20 +46,20 @@ public class ShoppingcartItem implements Serializable {
 		this.quantity = quantity;
 	}
 
-	public Product getProduct() {
-		return this.product;
-	}
-
-	public void setProduct(Product product) {
-		this.product = product;
-	}
-
-	public User getUser() {
-		return this.user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
+//	public Product getProduct() {
+//		return this.product;
+//	}
+//
+//	public void setProduct(Product product) {
+//		this.product = product;
+//	}
+//
+//	public User getUser() {
+//		return this.user;
+//	}
+//
+//	public void setUser(User user) {
+//		this.user = user;
+//  }
 
 }

@@ -2,6 +2,9 @@ package com.dcc.stream_test.models;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.List;
 
 
@@ -21,6 +24,7 @@ public class Role implements Serializable {
 	private String name;
 
 	//bi-directional many-to-many association to User
+	@JsonIgnore
 	@ManyToMany(mappedBy="roles")
 	private List<User> users;
 

@@ -1,5 +1,12 @@
 package com.dcc.stream_test.service;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +46,7 @@ public class StreamLabService {
     
     public List<User> ProblemTwo()
     {
-        // Write a query that retrieves the users from the User tables then print each user's email to the console.
+        // Write a query that retrieves the users from the User tables.
     	return users.findAll();
 
     }
@@ -47,46 +54,50 @@ public class StreamLabService {
     public List<Product> ProblemThree()
     {
         // Write a query that gets each product where the products price is greater than $150.
-    	return null;
+    	return products.findAll().stream().filter(p -> p.getPrice() > 150).toList();
     }
 
     public List<Product> ProblemFour()
     {
         // Write a query that gets each product that contains an "s" in the products name.
-    	return null;
+    	return products.findAll().stream().filter(p -> p.getName().contains("s")).toList();
     }
 
     public List<User> ProblemFive()
     {
         // Write a query that gets all of the users who registered BEFORE 2016
-    	return null;
+    	
+    	Calendar myCalendar = new GregorianCalendar(2016, 1, 1);
+    	Date myDate = myCalendar.getTime();
+    	
+      	return users.findAll().stream().filter(u -> u.getRegistrationDate().before(myDate)).toList();
     }
 
     public List<User> ProblemSix()
     {
-        // Write a LINQ query that gets all of the users who registered AFTER 2016 and BEFORE 2018
-        // Then print each user's email and registration date to the console.
-    	return null;
+        // Write a query that gets all of the users who registered AFTER 2016 and BEFORE 2018
+    	Calendar startC = new GregorianCalendar(2016, 12, 31);
+    	Calendar endC = new GregorianCalendar(2018, 1, 1);
+    	Date startDate = startC.getTime();
+    	Date endDate = endC.getTime();
+    	
+      	return users.findAll().stream().filter(u -> (u.getRegistrationDate().before(endDate) && u.getRegistrationDate().after(startDate))).toList();
     }
 
     // <><><><><><><><> R Actions (Read) with Foreign Keys <><><><><><><><><>
 
     public List<User> ProblemSeven()
     {
-        // Write a query that retreives all of the users who are assigned to the role of Customer.
-        // Then print the users email and role name to the console.
-//        var customerUsers = _context.UserRoles.Include(ur => ur.Role).Include(ur => ur.User).Where(ur => ur.Role.RoleName == "Customer");
-//        foreach (UserRole userRole in customerUsers)
-//        {
-//            Console.WriteLine($"Email: {userRole.User.Email} Role: {userRole.Role.RoleName}");
-//        }
-        
-    	return null;
+        // Write a query that retrieves all of the users who are assigned to the role of Customer.
+    	Role customerRole = roles.findAll().stream().filter(r -> r.getName().equals("Customer")).findFirst().orElse(null);
+    	List<User> customers = users.findAll().stream().filter(u -> u.getRoles().contains(customerRole)).toList();
+
+    	return customers;
     }
 
     public List<Product> ProblemEight()
     {
-        // Write a query that retreives all of the products in the shopping cart of the user who has the email "afton@gmail.com".
+        // Write a query that retrieves all of the products in the shopping cart of the user who has the email "afton@gmail.com".
         // Then print the product's name, price, and quantity to the console.
     	return null;
     }
@@ -110,13 +121,14 @@ public class StreamLabService {
 
     // <><> C Actions (Create) <><>
 
-    public void ProblemEleven()
+    public User ProblemEleven()
     {
         // Create a new User object and add that user to the Users table using LINQ.
         User newUser = new User();        
         newUser.setEmail("david@gmail.com");
         newUser.setPassword("DavidsPass123");
         users.save(newUser);
+        return newUser;
     }
 
     public void ProblemTwelve()
@@ -125,12 +137,13 @@ public class StreamLabService {
 
     }
 
-    public void ProblemThirteen()
+    public List<Role> ProblemThirteen()
     {
         // Add the role of "Customer" to the user we just created in the UserRoles junction table.
-    	Role customerRole = roles.findAll().stream().filter(r -> r.getName() == "Customer").findFirst().orElse(null);
-    	User david = users.findAll().stream().filter(u -> u.getEmail() == "david@gmail.com").findFirst().orElse(null);
+    	Role customerRole = roles.findAll().stream().filter(r -> r.getName().equals("Customer")).findFirst().orElse(null);
+    	User david = users.findAll().stream().filter(u -> u.getEmail().equals("david@gmail.com")).findFirst().orElse(null);
     	david.addRole(customerRole);
+    	return david.getRoles();
     }
 
     public void ProblemFourteen()

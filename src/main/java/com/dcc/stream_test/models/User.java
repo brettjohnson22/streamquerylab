@@ -2,7 +2,12 @@ package com.dcc.stream_test.models;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 
@@ -24,21 +29,22 @@ public class User implements Serializable {
 	private String password;
 
 	@Column(name="registration_date")
-	private Timestamp registrationDate;
+	private Date registrationDate = new Date();
 
 	//bi-directional many-to-one association to ShoppingcartItem
-	@OneToMany(mappedBy="user")
-	private List<ShoppingcartItem> shoppingcartItems;
+//	@OneToMany(mappedBy="user")
+//	private List<ShoppingcartItem> shoppingcartItems;
 
 	//bi-directional many-to-many association to Role
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(
 		name="user_roles"
 		, joinColumns={
-			@JoinColumn(name="user_id")
+			@JoinColumn(name="user_id", insertable=false, updatable=false)
 			}
 		, inverseJoinColumns={
-			@JoinColumn(name="role_id")
+			@JoinColumn(name="role_id", insertable=false, updatable=false)
 			}
 		)
 	private List<Role> roles;
@@ -70,7 +76,7 @@ public class User implements Serializable {
 		this.password = password;
 	}
 
-	public Timestamp getRegistrationDate() {
+	public Date getRegistrationDate() {
 		return this.registrationDate;
 	}
 
@@ -78,27 +84,27 @@ public class User implements Serializable {
 		this.registrationDate = registrationDate;
 	}
 
-	public List<ShoppingcartItem> getShoppingcartItems() {
-		return this.shoppingcartItems;
-	}
+//	public List<ShoppingcartItem> getShoppingcartItems() {
+//		return this.shoppingcartItems;
+//	}
+//
+//	public void setShoppingcartItems(List<ShoppingcartItem> shoppingcartItems) {
+//		this.shoppingcartItems = shoppingcartItems;
+//	}
 
-	public void setShoppingcartItems(List<ShoppingcartItem> shoppingcartItems) {
-		this.shoppingcartItems = shoppingcartItems;
-	}
-
-	public ShoppingcartItem addShoppingcartItem(ShoppingcartItem shoppingcartItem) {
-		getShoppingcartItems().add(shoppingcartItem);
-		shoppingcartItem.setUser(this);
-
-		return shoppingcartItem;
-	}
-
-	public ShoppingcartItem removeShoppingcartItem(ShoppingcartItem shoppingcartItem) {
-		getShoppingcartItems().remove(shoppingcartItem);
-		shoppingcartItem.setUser(null);
-
-		return shoppingcartItem;
-	}
+//	public ShoppingcartItem addShoppingcartItem(ShoppingcartItem shoppingcartItem) {
+//		getShoppingcartItems().add(shoppingcartItem);
+//		shoppingcartItem.setUser(this);
+//
+//		return shoppingcartItem;
+//	}
+//
+//	public ShoppingcartItem removeShoppingcartItem(ShoppingcartItem shoppingcartItem) {
+//		getShoppingcartItems().remove(shoppingcartItem);
+//		shoppingcartItem.setUser(null);
+//
+//		return shoppingcartItem;
+//	}
 
 	public List<Role> getRoles() {
 		return this.roles;
