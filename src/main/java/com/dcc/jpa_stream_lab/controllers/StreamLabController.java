@@ -1,18 +1,19 @@
-package com.dcc.stream_test.controllers;
+package com.dcc.jpa_stream_lab.controllers;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.dcc.stream_test.models.Product;
-import com.dcc.stream_test.models.Role;
-import com.dcc.stream_test.models.ShoppingcartItem;
-import com.dcc.stream_test.models.User;
-import com.dcc.stream_test.service.StreamLabService;
+import com.dcc.jpa_stream_lab.service.StreamLabService;
+import com.dcc.jpa_stream_lab.models.Product;
+import com.dcc.jpa_stream_lab.models.Role;
+import com.dcc.jpa_stream_lab.models.ShoppingcartItem;
+import com.dcc.jpa_stream_lab.models.User;
 
 @RestController
 public class StreamLabController {
@@ -70,54 +71,54 @@ public class StreamLabController {
     	return service.ProblemTen();
     }
     
-    @GetMapping("/problemEleven")
+    @PostMapping("/problemEleven")
     public User ProblemEleven() {
     	return service.ProblemEleven();
     }
     
-    @GetMapping("/problemTwelve")
+    @PostMapping("/problemTwelve")
     public Product ProblemTwelve() {
     	return service.ProblemTwelve();
     }
     
-    @GetMapping("/problemThirteen")
+    @PostMapping("/problemThirteen")
     public List<Role> ProblemThirteen() {
     	return service.ProblemThirteen();
     }
     
-    @GetMapping("/problemFourteen")
+    @PostMapping("/problemFourteen")
     public ShoppingcartItem ProblemFourteen() {
     	return service.ProblemFourteen();
     }
     
-    @GetMapping("/problemFifteen")
+    @PutMapping("/problemFifteen")
     public User ProblemFifteen() {
     	return service.ProblemFifteen();
     }
-//    
-//    @GetMapping("/problemSixteen")
-//    public void ProblemSixteen() {
-//    	return service.ProblemSixteen();
-//    }
-//    
-//    @GetMapping("/problemSeventeen")
-//    public void ProblemSeventeen() {
-//    	return service.ProblemSeventeen();
-//    }
-//    
-//    @GetMapping("/problemEighteen")
-//    public void ProblemEighteen() {
-//    	return service.ProblemEighteen();
-//    }
-//    
-//    @GetMapping("/problemNineteen")
-//    public void ProblemNineteen() {
-//    	return service.ProblemNineteen();
-//    }
-//    
-//    @GetMapping("/problemTwenty")
-//    public void ProblemTwenty() {
-//    	return service.ProblemTwenty();
-//    }
+    
+    @PutMapping("/problemSixteen")
+    public Product ProblemSixteen() {
+    	return service.ProblemSixteen();
+    }
+    
+    @PutMapping("/problemSeventeen")
+    public User ProblemSeventeen() {
+    	return service.ProblemSeventeen();
+    }
+    
+    @DeleteMapping("/problemEighteen")
+    public void ProblemEighteen() {
+    	service.ProblemEighteen();
+    }
+    
+    @DeleteMapping("/problemNineteen")
+    public void ProblemNineteen() {
+    	service.ProblemNineteen();
+    }
+    
+    @DeleteMapping("/problemTwenty")
+    public void ProblemTwenty() {
+    	service.ProblemTwenty();
+    }
     
 }

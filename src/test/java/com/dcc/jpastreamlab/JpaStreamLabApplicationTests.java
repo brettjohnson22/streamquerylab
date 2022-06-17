@@ -1,10 +1,10 @@
-package com.dcc.stream_test;
+package com.dcc.jpastreamlab;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class StreamTestApplicationTests {
+class JpaStreamLabApplicationTests {
 
 	@Test
 	void contextLoads() {

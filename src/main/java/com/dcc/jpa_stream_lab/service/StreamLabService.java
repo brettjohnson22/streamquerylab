@@ -1,35 +1,27 @@
-package com.dcc.stream_test.service;
+package com.dcc.jpa_stream_lab.service;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.hibernate.mapping.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.dcc.stream_test.models.Product;
-import com.dcc.stream_test.models.Role;
-import com.dcc.stream_test.models.ShoppingcartItem;
-import com.dcc.stream_test.models.User;
-import com.dcc.stream_test.repository.ProductsRepository;
-import com.dcc.stream_test.repository.RolesRepository;
-import com.dcc.stream_test.repository.ShoppingcartItemRepository;
-import com.dcc.stream_test.repository.UsersRepository;
+import com.dcc.jpa_stream_lab.repository.ProductsRepository;
+import com.dcc.jpa_stream_lab.repository.RolesRepository;
+import com.dcc.jpa_stream_lab.repository.ShoppingcartItemRepository;
+import com.dcc.jpa_stream_lab.repository.UsersRepository;
+import com.dcc.jpa_stream_lab.models.Product;
+import com.dcc.jpa_stream_lab.models.Role;
+import com.dcc.jpa_stream_lab.models.ShoppingcartItem;
+import com.dcc.jpa_stream_lab.models.User;
 
 @Transactional
 @Service
 public class StreamLabService {
-	
-//	@Autowired
-//	private RepositoryWrapper _context;
 	
 	@Autowired
 	private ProductsRepository products;
@@ -100,7 +92,7 @@ public class StreamLabService {
     {
         // Write a query that retrieves all of the products in the shopping cart of the user who has the email "afton@gmail.com".
         // Then print the product's name, price, and quantity to the console.
-    	User oda = users.getById(1);
+    	User oda = users.findById(1).orElse(null);
     	List<ShoppingcartItem> items = oda.getShoppingcartItems();
     	List<Product> products = items.stream().map(i -> i.getProduct()).toList();
     	return products;
@@ -181,7 +173,7 @@ public class StreamLabService {
     	//Create a new ShoppingCartItem to represent the new product you created being added to the new User you crteated's shopping cart.
         // Add the product you created to the user we created in the ShoppingCart junction table.
     	User oda = users.findAll().stream().filter(u -> u.getEmail().equals("oda@gmail.com")).findFirst().orElse(null);
-    	Product watch = products.getById(6);
+    	Product watch = products.findById(6).orElse(null);
     	ShoppingcartItem item = new ShoppingcartItem();
     	item.setUser(oda);
     	item.setProduct(watch);
@@ -200,13 +192,13 @@ public class StreamLabService {
           return user;
     }
 
-    public void ProblemSixteen()
+    public Product ProblemSixteen()
     {
         // Update the price of the product you created to a different value.
-
+    	return null;
     }
 
-    public void ProblemSeventeen()
+    public User ProblemSeventeen()
     {
         // Change the role of the user we created to "Employee"
         // HINT: You need to delete the existing role relationship and then create a new UserRole object and add it to the UserRoles table
@@ -220,6 +212,7 @@ public class StreamLabService {
 //        };
 //        _context.UserRoles.Add(newUserRole);
 //        _context.SaveChanges();
+    	return null;
     }
 
     // <><> D Actions (Delete) <><>

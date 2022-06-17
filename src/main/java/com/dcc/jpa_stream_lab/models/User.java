@@ -1,4 +1,4 @@
-package com.dcc.stream_test.models;
+package com.dcc.jpa_stream_lab.models;
 
 import java.io.Serializable;
 import javax.persistence.*;
